@@ -7,8 +7,7 @@ function createClassRoom(numberOfStudents) {
     }
     let students = [];
     for (let i = 0; i < numberOfStudents ; i++) {
-       let seatNumber = i + 1;
-       students.push(studentSeat(seatNumber))
+       students.push(studentSeat(i + 1));
     }
     return students;
 }
