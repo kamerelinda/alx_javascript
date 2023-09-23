@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <h1>Login to the website</h1>
+        <div>
+            <input type="text" id="firstname" value="Firstname">
+            <input type="email" value="Email" id="email">
+            <button onclick="setCookies()">Log me in</button>
+        </div>
+    </div>
+
+    <div>
+        <h1>Cookies</h1>
+        <button onclick="showCookies()"> Show the cookies</button>
+    </div>
+    
+
+
+    <script>
+        function setCookies() {
+            //defines values in input
+            const firstnameValue = document.getElementById('firstname').value;
+            const emailValue = document.getElementById('email').value;
+
+            // set expiry
+            let date = new Date();
+            date.setDate(date.getDate() + 10);
+
+            // set cookies
+            document.cookie = `firstname=${firstnameValue}; expires=${date.toUTCString()}; path=/`;
+            document.cookie = `email=${emailValue}; expires=${date.toUTCString()}; path=/`;
+        }
+
+        function showCookies() {
+
+
+            // splits the cookies after the semicolon and stores that in cookies as an array
+            const cookies = document.cookie.split('; ')
+
+            // create DOM element p
+            const cookieParagraph = document.createElement("p");
+            
+            // defines variable cookieText with initial words cookies
+            let cookieText = "Cookies: ";
+
+            // loops through each cookie in the cookies split
+            for (const cookie of cookies) {
+                // split each cookie to create an array with 2 elements
+                const [cookieName, cookieValue] = cookie.split('=');
+                // builds text string
+                cookieText += `${cookieName}=${cookieValue}; `;
+                
+            }
+            // add the paragraph at the bottom of body
+            document.body.appendChild(cookieParagraph);
+            
+            // adds the cookie text as text in the p tag
+            cookieParagraph.innerText = cookieText;
+
+            //get cookies
+            const email = getCookie("email");
+            const firstname = getCookie("firstname");
+
+            // create DOM element p
+            const cookieParagraph2 = document.createElement("p");
+
+            // adds the cookie text as text in the p tag
+            cookieParagraph2.textContent = `Email: ${email} - Firstname: ${firstname}`;
+
+            // add the paragraph at the bottom of body
+            document.body.appendChild(cookieParagraph2);
+        }
+
+        function getCookie(name) {
+
+            const cookies = document.cookie.split('; ')
+            // loops through each cookie in the cookies split
+            for (const cookie of cookies) {
+                // split each cookie to create an array with 2 elements
+                const [cookieName, cookieValue] = cookie.split('=');
+                if (cookieName == name) {
+                    return cookieValue;
+                }
+                
+            }
+            return "";
+        }
+    </script>
+</body>
+</html>
