@@ -44,7 +44,14 @@
             return true;
         }
     }
-    validatePassword();
+    // Prevent the default form submission behavior using JavaScript to
+    // prevent the form from submitting if the email format is not valid.
+const passwordForm = document.getElementById('passwordForm');
+passwordForm.addEventListener('submit', function (event) {
+    if (!validatePassword()) {
+        event.preventDefault(); // Prevent form submission if email is not valid
+    }
+});
 
 
 
