@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="html">
+<head>
+  <title>Creating and Removing Elements</title>
+</head>
+<body>
+<div id="container"></div>
+<script>
+  //  select the container element using its id and store it in a variable.
+  const containerElement = document.getElementById("container");
+
+  // create a new <p> element
+  const newPar = document.createElement("p");
+
+  // add New paragraph as its content
+  newPar.textContent = "New Paragraph";
+  // Append the newly created elements to the container element.
+  containerElement.appendChild(newPar);
+
+  // create a button
+  const toggleBtn = document.createElement("button");
+  toggleBtn.textContent = "Hide";
+  let parVisible  = true;
+
+  toggleBtn.addEventListener("click", function () {
+    if (parVisible){
+      newPar.style.display = 'none';
+      toggleBtn.textContent = "show";
+
+    }else {
+      newPar.style.display = 'block';
+      toggleBtn.textContent = "hide";
+
+    }
+      parVisible = !parVisible;
+  });
+  containerElement.appendChild(toggleBtn);
+
+
+</script>
+</body>
+</html>
